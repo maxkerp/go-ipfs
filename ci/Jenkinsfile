@@ -79,6 +79,11 @@ ansiColor('xterm') { withEnv(['TERM=xterm-color']) { timeout(time: 30, unit: 'MI
       },
       'go build': {
         gobuild_step(fast_build_platforms)
+      },
+      linuxBench: {
+        setupStep('linux') { run ->
+          benchmark altInputSchema: '', altInputSchemaLocation: '', inputLocation: 'test.json', schemaSelection: 'defaultSchema', truncateStrings: false
+        }
       }
     )
   }
